@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react"
 import { Button, Center, Container, Input } from "@chakra-ui/react"
-import { registerProcess } from "./../../api/auth"
+import { registerProcess } from "../../actions/auth"
 
 export default function Register(){
 

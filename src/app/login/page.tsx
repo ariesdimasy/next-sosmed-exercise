@@ -1,11 +1,18 @@
 "use client"
 import { useState } from "react"
 import { Button, Center, Container, Input } from "@chakra-ui/react"
+import { loginProcess } from "@/actions/auth";
 
 export default function Login(){
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
+
+    const loginUserProcess = async () => {
+        await loginProcess({
+            email, password
+        })
+    }
 
     return (<Center bg="bg.emphasized" h={"90vh"}>
         <Container>
@@ -26,7 +33,7 @@ export default function Login(){
                 ></Input>
             </div>
             <div  className="my-5">
-                <Button> Login </Button>
+                <Button onClick={() => loginUserProcess()}> Login </Button>
             </div>
            
         </Container>

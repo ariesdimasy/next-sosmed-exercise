@@ -2,7 +2,7 @@
 
 import MyCard from "./MyCard";
 import { useQuery } from "@tanstack/react-query";
-import { getDataPost } from "@/api/blog";
+import { getDataPost } from "@/actions/blog";
 
 export default function LatestPost() {
   const { data, isError, isLoading, error } = useQuery({

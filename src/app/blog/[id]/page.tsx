@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import HeroDetail from "@/components/HeroDetail";
 import { Heading } from "@chakra-ui/react";
-import { getDetailDataPost } from "@/api/blog";
+import { getDetailDataPost } from "@/actions/blog";
 
 import { useParams } from 'next/navigation'
 
