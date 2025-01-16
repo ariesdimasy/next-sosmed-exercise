@@ -31,3 +31,7 @@ export async function registerProcess(data:{ name:string, email:string, password
         password
     })
 }
+
+export async function decryptJwt(){
+
+}
