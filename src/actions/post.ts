@@ -2,6 +2,7 @@
 
 import axios from "axios"
 import Cookies from "js-cookie"
+import Error from "next/error"
 
 const base_url = "http://localhost:5678"
 
@@ -17,11 +18,31 @@ export async function postListProcess(){
                 Authorization:newToken
             }
         })
-    } catch(err) {
-        alert(JSON.stringify(err.message))
+    } catch(err:any) {
+        alert(JSON.stringify(err))
     }
 }
 
-export function createPostProcess(){
+export async function createPostProcess(data:{
+    content:string
+}){
+    try {
 
+        let newToken = ""
+        if(Cookies.get("token")){
+            newToken = "Bearer "+Cookies.get("token")
+        }
+
+        return await axios.post(base_url+"/api/posts",{
+            content:data.content,
+        },{
+            headers:{
+                Authorization:newToken
+            }
+        })
+
+
+    } catch(err:any){
+
+    }
 }

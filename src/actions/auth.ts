@@ -14,8 +14,14 @@ export async function loginProcess(data:{ email:string, password:string}){
     })
 
     if(response.status == 200){
-        Cookie.set("token",response.data.data.token)
-        alert("login success")
+
+        const { id, name, email, token } = response.data.data
+
+        Cookie.set("token",token)
+        Cookie.set("user",JSON.stringify({
+            id, name, email
+        }))
+        
     } else {
         alert(response.data.data.message)
     }
@@ -30,8 +36,4 @@ export async function registerProcess(data:{ name:string, email:string, password
         email,
         password
     })
-}
-
-export async function decryptJwt(){
-
 }

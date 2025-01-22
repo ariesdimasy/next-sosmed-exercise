@@ -2,16 +2,25 @@
 import { useState } from "react"
 import { Button, Center, Container, Input } from "@chakra-ui/react"
 import { loginProcess } from "@/actions/auth";
+import { useRouter } from 'next/navigation'
 
 export default function Login(){
+
+    const router = useRouter()
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
 
     const loginUserProcess = async () => {
-        await loginProcess({
-            email, password
-        })
+        try {
+            await loginProcess({
+                email, password
+            })
+
+            router.push("/post")
+        } catch(err){
+            alert(JSON.stringify(err))
+        }
     }
 
     return (<Center bg="bg.emphasized" h={"90vh"}>

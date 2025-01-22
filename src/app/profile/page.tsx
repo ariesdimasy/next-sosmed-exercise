@@ -1,9 +1,9 @@
 "use client"
 
-import { useState} from "react"
+import { useEffect, useState} from "react"
 import { Button, Grid, Input, Container, Heading } from "@chakra-ui/react"
 import Image from "next/image"
-import { updateUserProfile } from "./../../actions/user"
+import { updateUserProfile, getUserDetail } from "./../../actions/user"
 
 export default function Profile(){
 
@@ -12,12 +12,18 @@ export default function Profile(){
     const [imageUrl, setImageUrl] = useState("")
     const [imageObj, setImageObj] = useState<any>()
 
-    const getDataProfile = () => {
+    const getDataProfile = async () => {
+        const res = await getUserDetail() 
 
+        const { name , email, image } = res?.data.data
+
+        setName(name)
+        setEmail(email)
+        setImageUrl("http://localhost:5678/images/"+image)
     }
 
     const updateProfileProcess = async () => {
-        alert("hello")
+        
 
         const formData = new FormData()
 
@@ -30,12 +36,16 @@ export default function Profile(){
         alert(JSON.stringify(res.data.message))
     }
 
+    useEffect(() => {
+        getDataProfile()
+    },[])
+
     return (<Grid>
         <Container sx={{ marginTop:100 }}>
         <Heading as="h1"> Profile </Heading>
         <Grid sx={{ margin:"40px auto",}}>
 
-            <Image width={200} height={200} style={{ border:'1px solid grey'}} src={imageUrl} alt="profile picture"/>
+            <img width={200} height={200} style={{ border:'1px solid grey'}} src={imageUrl} alt="profile picture" />
         </Grid>
         <Grid>
             <Grid sx={{ margin:"10px 0"}}>
