@@ -23,7 +23,7 @@ export default function PostList(props:any){
 
     const createPost = async () => {
         await createPostProcess({ content:content })
-        getPostList()
+        // getPostList()
         setContent("")
         setImageFile('')
         setImageUrl('')

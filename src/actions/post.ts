@@ -2,7 +2,6 @@
 
 import axios from "axios"
 import Cookies from "js-cookie"
-import Error from "next/error"
 
 const base_url = "http://localhost:5678"
 

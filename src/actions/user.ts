@@ -46,7 +46,8 @@ export async function updateUserProfile(data:FormData){
             newToken = "Bearer "+Cookies.get("token")
         }
     
-        return await axios.put(base_url+`/api/users/${userSession?.id}`,data,{
+        return await axios.put(base_url+`/api/users/${userSession?.id}`,
+            data,{
             headers:{
                 Authorization:newToken
             }
